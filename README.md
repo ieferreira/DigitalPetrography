@@ -1,4 +1,4 @@
-﻿#DigitalPetrography
+## DigitalPetrography
 
 Functions to process thin section images with canny edge detection filter, hough line transform and hough circles transform. Aditionally I have left the jupyter notebooks (.ipynb) with interactivity so anyone can play with the parameters given to the functions
 
