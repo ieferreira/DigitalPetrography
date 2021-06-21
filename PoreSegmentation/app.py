@@ -6,14 +6,12 @@ from sklearn.datasets import make_blobs, make_circles, make_moons
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn import metrics
-from pylab import rcParams
 from functions.utils import *
 from functions.image_processing import *
 import streamlit as st
 
 
 clean_folder()
-clean_folder("responses/*")
 
 st.markdown(
     """## Porosity identification in (blue) tinted sedimentary sections (petrography)""")
@@ -24,7 +22,8 @@ st.sidebar.markdown("Algorithms to use and parameters")
 st.write("#### Please, Upload an Image")
 
 
-file = st.file_uploader("", type=["jpg", "png"])
+# file = st.file_uploader("", type=["jpg", "png"])
+file = st.file_uploader("", type=["jpg"])
 
 if file is None:
     st.text("Upload an image..")
@@ -36,6 +35,7 @@ if file:
 
     img_num = np.asarray(img_org)
     img_num = img_num/255
+    # img_num = img_num[:, :, -1]
 
     st.sidebar.markdown("### Preprocessing")
 
@@ -45,23 +45,20 @@ if file:
 
     if st.sidebar.checkbox("Generar imagen segmentada por colores", value=False):
 
-        m, l, k = img_num.shape[0], img_num.shape[1], img_num.shape[2]
-
-        df = pd.DataFrame(img_num.reshape(m*l, k))
-
-        df.columns = ["R", "G", "B"]
-        kmeans = KMeans(n_clusters=n_clusters)
-        kmeans.fit(df)
-        df["clusters"] = kmeans.labels_
-
-        centers = pd.DataFrame(kmeans.cluster_centers_)
-        centers["clusters"] = range(n_clusters)
-        df["ind"] = df.index
-        df = df.merge(centers)
-        df = df.sort_values("ind")
-        df = df.drop("ind", 1)
-        quant_img = df.iloc[:, 4:7].values
-
-        quant_img = quant_img.reshape(
-            img_num.shape[0], img_num.shape[1], img_num.shape[2])
+        quant_img = quantize_image(img_num, n_clusters)
         st.image(quant_img)
+        clustered_img = quant_img*255
+
+        m, l, k = clustered_img.shape[0], clustered_img.shape[1], clustered_img.shape[2]
+        df2 = pd.DataFrame(clustered_img.reshape(m*l, k))
+        df2.columns = ["R", "G", "B"]
+        contados = df2.apply(pd.value_counts).sum(axis=1)
+
+        total = pd.unique(contados)
+
+        suma = total.sum()
+        porcentaje = (total/suma)*100
+
+        st.write(porcentaje)
+        st.write("______________________ \n")
+        st.write("POROSIDAD = ", round(porcentaje[n_clusters-1], 2))
