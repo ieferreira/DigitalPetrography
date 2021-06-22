@@ -1,8 +1,20 @@
 {
     "workbench.colorCustomizations": {
         "activityBar.background": "#252958",
-        "titleBar.activeBackground": "#33397C",
-        "titleBar.activeForeground": "#FAFBFD"
+        "titleBar.activeBackground": "#161834",
+        "titleBar.activeForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#252958",
+        "activityBar.activeBorder": "#9d4249",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#9d4249",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#161834",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#252958",
+        "titleBar.inactiveBackground": "#16183499",
+        "titleBar.inactiveForeground": "#e7e7e799"
     },
-    "python.pythonPath": "C:\\Users\\ferreira\\anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Users\\ferreira\\anaconda3\\python.exe",
+    "peacock.color": "#161834"
 }
