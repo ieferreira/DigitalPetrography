@@ -39,6 +39,20 @@ def quantize_image(img_num: np.ndarray, n_clusters: int) -> np.ndarray:
 
     centers = pd.DataFrame(kmeans.cluster_centers_)
     centers["clusters"] = range(n_clusters)
+    s = df.clusters.value_counts(normalize=True, sort=False).mul(
+        100)  # giving percentage by clustered color
+
+    # finding index with "bluest" color for porosity
+    colors = df.groupby(["clusters"]).mean()
+
+    colors["percentage"] = df.clusters.value_counts(
+        normalize=True, sort=False).mul(100)  # mul(100) is == *100
+    index_larger = colors.sort_values(by=["B"], ascending=False)
+    por = index_larger.iloc[0].name
+    colors['R'] = colors['R'].apply(lambda x: x*255)
+    colors['G'] = colors['G'].apply(lambda x: x*255)
+    colors['B'] = colors['B'].apply(lambda x: x*255)
+
     df["ind"] = df.index
     df = df.merge(centers)
     df = df.sort_values("ind")
@@ -48,4 +62,4 @@ def quantize_image(img_num: np.ndarray, n_clusters: int) -> np.ndarray:
     quant_img = quant_img.reshape(
         img_num.shape[0], img_num.shape[1], img_num.shape[2])
 
-    return quant_img
+    return quant_img, colors, por

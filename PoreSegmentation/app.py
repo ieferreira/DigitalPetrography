@@ -23,7 +23,7 @@ st.write("#### Please, Upload an Image")
 
 
 # file = st.file_uploader("", type=["jpg", "png"])
-file = st.file_uploader("", type=["jpg"])
+file = st.file_uploader("", type=["jpg", "png"])
 
 if file is None:
     st.text("Upload an image..")
@@ -32,7 +32,6 @@ if file is None:
 if file:
     img = import_image(file)
     img_org = img.copy()
-
     img_num = np.asarray(img_org)
     img_num = img_num/255
     # img_num = img_num[:, :, -1]
@@ -45,20 +44,23 @@ if file:
 
     if st.sidebar.checkbox("Generar imagen segmentada por colores", value=False):
 
-        quant_img = quantize_image(img_num, n_clusters)
-        st.image(quant_img)
+        quant_img, color_percentages, por = quantize_image(img_num, n_clusters)
+        st.image(quant_img, clamp=True, channels="RGB")
         clustered_img = quant_img*255
 
-        m, l, k = clustered_img.shape[0], clustered_img.shape[1], clustered_img.shape[2]
-        df2 = pd.DataFrame(clustered_img.reshape(m*l, k))
-        df2.columns = ["R", "G", "B"]
-        contados = df2.apply(pd.value_counts).sum(axis=1)
+        # m, l, k = clustered_img.shape[0], clustered_img.shape[1], clustered_img.shape[2]
+        # df2 = pd.DataFrame(clustered_img.reshape(m*l, k))
+        # df2.columns = ["R", "G", "B"]
+        # contados = df2.apply(pd.value_counts).sum(axis=1)
 
-        total = pd.unique(contados)
+        # total = pd.unique(contados)
 
-        suma = total.sum()
-        porcentaje = (total/suma)*100
+        # suma = total.sum()
+        # porcentaje = (total/suma)*100
 
-        st.write(porcentaje)
         st.write("______________________ \n")
-        st.write("POROSIDAD = ", round(porcentaje[n_clusters-1], 2))
+        st.write("POROSIDAD = ", round(color_percentages[por], 2))
+
+        st.write("______________________ \n")
+        st.write("Other color percentages: ")
+        st.table(color_percentages)
