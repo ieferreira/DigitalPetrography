@@ -1,8 +1,20 @@
 {
     "python.pythonPath": "C:\\Users\\IvanE\\anaconda3\\python.exe",
     "workbench.colorCustomizations": {
-        "activityBar.background": "#2F3004",
-        "titleBar.activeBackground": "#424305",
-        "titleBar.activeForeground": "#FBFCD9"
-    }
+        "activityBar.background": "#343400",
+        "titleBar.activeBackground": "#010100",
+        "titleBar.activeForeground": "#e7e7e7",
+        "activityBar.activeBackground": "#343400",
+        "activityBar.activeBorder": "#007f80",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#007f80",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#010100",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#343400",
+        "titleBar.inactiveBackground": "#01010099",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#010100"
 }
