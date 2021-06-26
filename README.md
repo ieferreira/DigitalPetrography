@@ -8,10 +8,14 @@ Funciones para procesar imagenes de secciones delgadas con el filtro de deteccio
 
 Using Hough circle detection algorithm to find fluid inclusions in thin sections and extract its radius.
 
+<p align="center">
 ![Result of the circle detection filter in quartz with inclusions](/resDeteccion.png)
+</p>
 
 ### Pore Segmentation
 
 Streamlit app to color segmentate thin sections and in this case, blue for pores, try to find its porosity by finding the percentage of blue regions in thin sections. It also may have other uses in accounting for alteration area and general segmentation (clustering, KMeans) by color on thin sections.
 
+<p align="center">
 <img src="/PoreSegmentation/demo_pore.gif" width="800" height="400"/>
+</p>
