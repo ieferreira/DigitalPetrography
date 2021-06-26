@@ -43,7 +43,7 @@ def quantize_image(img_num: np.ndarray, n_clusters: int) -> np.ndarray:
         100)  # giving percentage by clustered color
 
     # finding index with "bluest" color for porosity
-    colors = df.groupby(["clusters"]).mean()
+    colors = df.copy().groupby(["clusters"]).mean()
 
     colors["percentage"] = df.clusters.value_counts(
         normalize=True, sort=False).mul(100)  # mul(100) is == *100

@@ -59,7 +59,8 @@ if file:
         # porcentaje = (total/suma)*100
 
         st.write("______________________ \n")
-        st.write("POROSIDAD = ", round(color_percentages[por], 2))
+        st.write("POROSIDAD = ", round(
+            color_percentages.iloc[por].percentage, 2))
 
         st.write("______________________ \n")
         st.write("Other color percentages: ")
