@@ -48,20 +48,23 @@ if file:
         st.image(quant_img, clamp=True, channels="RGB")
         clustered_img = quant_img*255
 
-        # m, l, k = clustered_img.shape[0], clustered_img.shape[1], clustered_img.shape[2]
-        # df2 = pd.DataFrame(clustered_img.reshape(m*l, k))
-        # df2.columns = ["R", "G", "B"]
-        # contados = df2.apply(pd.value_counts).sum(axis=1)
-
-        # total = pd.unique(contados)
-
-        # suma = total.sum()
-        # porcentaje = (total/suma)*100
-
         st.write("______________________ \n")
         st.write("POROSIDAD = ", round(
             color_percentages.iloc[por].percentage, 2))
 
+        # rgb_colors = color_percentages["RGB"].to_list()
+        # rgb = []
+        # for color in rgb_colors:
+        #     color = color.split(",")
+        #     rgb.append(color)
+        # rgb_colors =
+        # print(rgb)
+        # hex_colors = [rgb_to_hex(rgb[i])
+        #               for i in range(len(rgb))]
+        # print(hex_colors)
+        # plt.pie(color_percentages["percentage"], colors=hex_colors)
+        # plt.savefig("colors_pie.png")
+
         st.write("______________________ \n")
         st.write("Other color percentages: ")
-        st.table(color_percentages)
+        st.table(color_percentages[["R", "G", "B", "percentage"]])

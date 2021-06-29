@@ -35,6 +35,7 @@ def quantize_image(img_num: np.ndarray, n_clusters: int) -> np.ndarray:
     df.columns = ["R", "G", "B"]
     kmeans = KMeans(n_clusters=n_clusters)
     kmeans.fit(df)
+
     df["clusters"] = kmeans.labels_
 
     centers = pd.DataFrame(kmeans.cluster_centers_)
@@ -62,4 +63,16 @@ def quantize_image(img_num: np.ndarray, n_clusters: int) -> np.ndarray:
     quant_img = quant_img.reshape(
         img_num.shape[0], img_num.shape[1], img_num.shape[2])
 
+    colors["RGB"] = colors[colors.columns[1:]].apply(
+        lambda x: ','.join(x.dropna().astype(str)[:3]), axis=1)
+
     return quant_img, colors, por
+
+
+def rgb_to_hex(rgb_color):
+    hex_col = '#{:02x}{:02x}{:02x}'.format(int(float(rgb_color[0])), int(
+        float(rgb_color[1])), int(float(rgb_color[2])))
+    return hex_col[:7]
+# ['#5d552a', '#a4bf2a', '#546f0e']
+# ['#5d553f2a', '#a4beea2a', '#546e840e']
+# ['#5d553f', '#a4bee8', '#546e78']
