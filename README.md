@@ -8,9 +8,8 @@ Funciones para procesar imagenes de secciones delgadas con el filtro de deteccio
 
 Using Hough circle detection algorithm to find fluid inclusions in thin sections and extract its radius.
 
-<p align="center">
-![Result of the circle detection filter in quartz with inclusions](/resDeteccion.png)
-</p>
+![Result of the circle detection filter in quartz with inclusions](resDeteccion.png)
+
 
 ### Pore Segmentation
 
