@@ -73,6 +73,3 @@ def rgb_to_hex(rgb_color):
     hex_col = '#{:02x}{:02x}{:02x}'.format(int(float(rgb_color[0])), int(
         float(rgb_color[1])), int(float(rgb_color[2])))
     return hex_col[:7]
-# ['#5d552a', '#a4bf2a', '#546f0e']
-# ['#5d553f2a', '#a4beea2a', '#546e840e']
-# ['#5d553f', '#a4bee8', '#546e78']

@@ -18,3 +18,8 @@ Streamlit app to color segmentate thin sections and in this case, blue for pores
 <p align="center">
 <img src="/PoreSegmentation/demo_pore.gif" width="800" height="400"/>
 </p>
+
+
+### Ash Classification 
+
+Replicated results Based on Shoji et al, 2018 for volcanic ash particle classification using CNN

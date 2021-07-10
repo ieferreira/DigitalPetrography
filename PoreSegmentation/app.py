@@ -50,7 +50,7 @@ if file:
 
         st.write("______________________ \n")
         st.write("POROSIDAD = ", round(
-            color_percentages.iloc[por].percentage, 2))
+            color_percentages. iloc[por].percentage, 2))
 
         # rgb_colors = color_percentages["RGB"].to_list()
         # rgb = []
