@@ -9,3 +9,12 @@ Trying to replicate results by Shoji et al, 2018 paper about the use of neural n
 - Vesicular
 
 
+### Bibliography
+
+
+Shoji, D., Noguchi, R., Otsuki, S. et al. Classification of volcanic ash particles using a convolutional neural network and probability. Sci Rep 8, 8111 (2018).
+
+
+### Dataset availability
+
+https://www.researchgate.net/publication/324495337_Training_particle_images_for_Classification_of_volcanic_ash_particles_using_a_convolutional_neural_network_and_probability

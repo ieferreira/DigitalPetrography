@@ -22,4 +22,4 @@ Streamlit app to color segmentate thin sections and in this case, blue for pores
 
 ### Ash Classification 
 
-Replicated results Based on Shoji et al, 2018 for volcanic ash particle classification using CNN
+Trying to replicate results Based on Shoji et al, 2018 for volcanic ash particle classification using a convolutional neural network.
