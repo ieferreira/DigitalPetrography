@@ -6,14 +6,14 @@ In this notebook, experiments using the SLIC (Simple linear iterative clustering
 
 
 <p align="center">
-<img src="gt-olivino.jpg" width="100%"/>
+<img src="gt-olivino.jpg" height="70%"/>
 </p>
 
 ### Original Images
 
 
 <p align="center">
-<img src="olivino.jpg" width="100%"/>
+<img src="olivino.jpg" height="70%"/>
 </p>
 
 
