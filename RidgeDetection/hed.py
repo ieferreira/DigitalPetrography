@@ -78,3 +78,9 @@ def hed(image, apply_canny=False, canny_inf=100, canny_sup=200):
         return edges
     else:
         return out
+
+
+def apply_canny(img, canny_inf=100, canny_sup=200):
+    """Apply canny algorithm to img and return edges with parameters given"""
+    edges = cv2.Canny(img, canny_inf, canny_sup)
+    return edges
