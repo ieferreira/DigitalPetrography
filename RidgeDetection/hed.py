@@ -1,9 +1,9 @@
-import numpy as np 
-import matplotlib.pyplot as plt 
-import pandas as pd 
+import numpy as np
+import matplotlib.pyplot as plt
 import cv2
 
-def graphImgsColor(imgs, title=None, cmap="Greys_r", figsize=(12,6)):
+
+def graphImgsColor(imgs, title=None, cmap="Greys_r", figsize=(12, 6)):
     fig, axes = plt.subplots(nrows=1, ncols=len(imgs), figsize=figsize)
     for i, ax in enumerate(axes):
         ax.imshow(imgs[i], cmap=cmap)
@@ -13,8 +13,9 @@ def graphImgsColor(imgs, title=None, cmap="Greys_r", figsize=(12,6)):
             except:
                 pass
     fig.tight_layout()
-    
-def graphImgs(imgs, title=None, cmap="Greys_r", figsize=(12,6)):
+
+
+def graphImgs(imgs, title=None, cmap="Greys_r", figsize=(12, 6)):
     """ imgs ->  a list of images
         title ->  a list of strings        
         returns mpl subplots
@@ -28,7 +29,7 @@ def graphImgs(imgs, title=None, cmap="Greys_r", figsize=(12,6)):
             except:
                 pass
     fig.tight_layout()
-    
+
 
 def hed(image, apply_canny=False, canny_inf=100, canny_sup=200):
     class CropLayer(object):
@@ -54,26 +55,26 @@ def hed(image, apply_canny=False, canny_inf=100, canny_sup=200):
             return [[batchSize, numChannels, height, width]]
 
         def forward(self, inputs):
-            return [inputs[0][:,:,self.ystart:self.yend,self.xstart:self.xend]]
-
+            return [inputs[0][:, :, self.ystart:self.yend, self.xstart:self.xend]]
 
     # Load the model.
-    net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "hed_pretrained_bsds.caffemodel")
+    net = cv2.dnn.readNetFromCaffe(
+        "deploy.prototxt", "hed_pretrained_bsds.caffemodel")
     cv2.dnn_registerLayer('Crop', CropLayer)
 
     inp = cv2.dnn.blobFromImage(image, scalefactor=1.0, size=image.shape[:2],
-                               mean=(104.00698793, 116.66876762, 122.67891434),
-                               swapRB=False, crop=False)
+                                mean=(104.00698793, 116.66876762, 122.67891434),
+                                swapRB=False, crop=False)
     net.setInput(inp)
     out = net.forward()
     out = out[0, 0]
     out = cv2.resize(out, (image.shape[1], image.shape[0]))
-    out=  cv2.cvtColor(out,cv2.COLOR_GRAY2BGR)
+    out = cv2.cvtColor(out, cv2.COLOR_GRAY2BGR)
     out = 255 * out
     out = out.astype(np.uint8)
-    if apply_canny: # if apply_canny is true
+    if apply_canny:  # if apply_canny is true
 
-        edges = cv2.Canny(out,canny_inf,canny_sup)
+        edges = cv2.Canny(out, canny_inf, canny_sup)
         return edges
-    else:         
+    else:
         return out
