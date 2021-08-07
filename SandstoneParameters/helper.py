@@ -57,3 +57,14 @@ def quantize_image(img, n_clusters):
     quant_img = np.array(quant_img, dtype=np.float64)
 
     return quant_img
+
+
+def plot_images(*images):
+    subplots = len(images)
+
+    plt.figure(figsize=(12, 9))
+    for i, img in enumerate(images):
+        plt.subplot(1, subplots, (i+1))
+        plt.imshow(img, interpolation='none')
+    plt.grid(0)
+    plt.show()
