@@ -6,8 +6,7 @@ from sklearn.cluster import KMeans
 
 
 def load_img(fname):
-
-    img = cv2.imread("sandLaminated.jpg", cv2.COLOR_BGR2RGB)
+    img = cv2.imread(fname, cv2.COLOR_BGR2RGB)
     return img
 
 
@@ -69,12 +68,13 @@ def plot_images(*images):
     plt.grid(0)
     plt.show()
 
+
 def make_histogram_img(img):
     """go row by row in y direction of image given in img, and count pixels with 255 values and add them, then show a histogram of count of pixels with 255 value in image y - axis."""
     hist = []
 
     for i in range(img.shape[0]):
-        hist.append(len(np.where(img[i,:] == 255)[0]))
+        hist.append(len(np.where(img[i, :] == 255)[0]))
     plt.figure(figsize=(3, 12))
     plt.plot(hist, range(len(hist)))
     plt.title("Number of voids pixels across section")
